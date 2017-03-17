@@ -1,0 +1,20 @@
+filebeat:
+  prospectors:
+    -
+      paths:
+        - /<PATH_PARA_LOG_SIS>/server.log
+      encoding: ISO-8859-1
+      input_type: log
+      fields:
+          server: "<IDENTIFICACAO_SERVIDOR>"
+      multiline:
+        pattern: .*^[[:space:]]+|^Caused by:*
+        negate: false
+        match: after
+output:
+  logstash:
+    hosts: ["<IP_SERVER_LOGSTASH>:5044"]
+shipper:
+logging:
+  files:
+    rotateeverybytes: 10485760 # = 10MB
