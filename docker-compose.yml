@@ -5,11 +5,11 @@ services:
     environment:
       ES_JAVA_OPTS: "-Xms1g -Xmx1g"
     volumes:
-      - /mnt/data/elasticsearch/sis2:/usr/share/elasticsearch/data
+      - C:\Users\rodrigo.vieira\Documents\elastick-stack\elasticsearch\indices:/usr/share/elasticsearch/data
     ports:
       - "9200:9200"
     networks:
-      - dashboard-sis
+      - elastic-stack
   logstash:
     build: logstash/
     command: -f /etc/logstash/conf.d/
@@ -18,7 +18,7 @@ services:
     ports:
       - "5044:5044"
     networks:
-      - dashboard-sis
+      - elastic-stack
     depends_on:
       - elasticsearch
   kibana:
@@ -28,9 +28,9 @@ services:
     ports:
       - "5601:5601"
     networks:
-      - dashboard-sis
+      - elastic-stack
     depends_on:
       - elasticsearch
 networks:
-  dashboard-sis:
+  elastic-stack:
     driver: bridge
