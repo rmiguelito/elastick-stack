@@ -2,7 +2,7 @@ filebeat:
   prospectors:
     -
       paths:
-        - /<PATH_PARA_LOG_SIS>/server.log
+        - /<PATH_PARA_LOG
       encoding: ISO-8859-1
       input_type: log
       fields:
